@@ -1,0 +1,102 @@
+# install Docker
+   64  uname -a
+   65  apt-get update
+   66  apt-get upgrade
+   67  apt-get install -y docker.io
+   68  systemctl start docker
+   69  systemctl enable docker
+   70  docker version
+   72  docker run hello-world
+   73  docker image ls
+   74  docker ps
+   78  docker ps -a
+   79  docker image ls
+# remove all containers using the hello-world image then only we can remove the hello-world image
+   81  docker rm ded c53
+   80  docker rmi hello-world
+   84  docker search hello-world
+   85  docker pull hello-world
+   86  docker create hello-world
+   87  docker start a2
+   88  docker start -a a2
+   91  docker run hello-world
+   92  docker run -d hello-world
+   88  docker run -i ubuntu # exit for exitting the interactive session
+   89  docker run -t ubuntu # ctrl c to exit the terminal
+   72  docker run -itd ubuntu:xenial
+   73  docker ps
+   74  docker attach e0
+   75  docker ps # exit stops the container and exits the container terminal
+   83  docker run -it ubuntu:xenial # ctrl p + q exits the container terminal without stopping the container
+   84  docker ps
+   85  docker attach e2 # exit stops and exits the container terminal
+   86  docker ps
+   67  docker run -itd ubuntu
+   68  docker ps
+   69  docker pause 9e
+   70  docker ps
+   72  docker unpause 9e
+   73  docker stop 9e
+   75  docker inspect 9e
+   83  docker run -it -v "$PWD":/edureka ubuntu /bin/bash  # create a file in edureka folder in the container. We can find it in the # current path
+   84  docker ps
+   85  ls
+   89  docker run -d ubuntu sleep 300
+   90  docker exec -it 04 /bin/bash # create a file1.txt in the container
+   95  docker cp 047:/file1.txt .
+  102  docker run -itd --name myubuntu ubuntu
+  103  docker start myubuntu
+  104  docker ps
+  105  echo "In the Docker host" > host.txt
+  106  ls
+  107  docker cp host.txt myubuntu:/host.txt
+  108  docker attach 467
+# Create Dockerfile for Welcome 
+  169  vi Dockerfile
+  170  docker build . -t new-hello
+  171  docker run new-hello
+# create Dockerfile for python project
+  168  vi Dockerfile
+  169  docker build . -t newapp
+  170  docker image ls
+  171  docker run -d -p 8086:5000 newapp
+# Commit changes to create a new image from the container
+  169  docker run -it ubuntu /bin/bash
+  170  docker ps
+  171  docker commit 551cdd69f126 ubuntu:update
+  172  docker stop 551
+  173  docker rm 551
+  174  docker ps
+  175  docker run -it ubuntu:update
+# create a tar file from the new image and share it with the team and load back the same image
+  177  docker save -o update1.tar ubuntu:update
+  178  ls
+  179  docker load < update1.tar
+# Export a container’s filesystem as a tar archive, share it import it
+  182  docker run -it ubuntu /bin/bash
+  183  docker ps
+  184  docker export aaa88b4ca1b4 > update2.tar
+  185  ls
+  187  docker import - update-image < update2.tar
+  188  docker image ls
+# Private registry
+  194  docker pull registry:2
+  195  docker run -d -p 5000:5000 registry:2
+  196  curl -i http://localhost:5000/v2/
+  197  docker tag anjurose/update-image localhost:5000/update-image
+  198  docker push localhost:5000/update-image
+  199  docker rmi update-image
+  200  docker rmi localhost:5000/update-image
+  201  docker image ls
+  202  docker pull localhost:5000/update-image
+  203  docker image ls
+
+
+  	
+
+	
+
+
+
+
+
